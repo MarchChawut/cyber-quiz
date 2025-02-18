@@ -18,7 +18,7 @@ const CyberQuiz: React.FC = () => {
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  // ดึงข้อมูลคำถามเมื่อ userInfo พร้อมแล้ว
+  // ดึงข้อมูลคำถามเมื่อ userInfo พร้อมแล้วเท่านั้น
   useEffect(() => {
     if (userInfo) {
       axios
