@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Select, { GroupBase, OptionsOrGroups } from "react-select";
 
-import { rankOptions } from "../api/ranks/route";
-import { departmentOptions } from "../api/departments/route";
+import { rankOptions } from "@/data/rankOptions";
+import { departmentOptions } from "@/data/departmentOptions";
 
 export type UserInfo = {
   id: number;
@@ -32,36 +32,6 @@ const UserInfoForm: React.FC<UserInfoFormProps> = ({ onSubmit }) => {
   type SelectGroup = GroupBase<SelectOption>;
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-  // สำหรับเก็บข้อมูล rank และ department_options จาก API
-//   const [rankOptions, setRankOptions] = useState<
-//     Record<string, { value: string; label: string }[]>
-//   >({});
-//   const [departmentOptions, setDepartmentOptions] = useState<
-//     Record<string, { value: string; label: string }[]>
-//   >({});
-
-//   useEffect(() => {
-//     // โหลดข้อมูล ranks
-//     axios
-//       .get("/api/ranks")
-//       .then((res) => {
-//         setRankOptions(res.data);
-//       })
-//       .catch((err) => {
-//         console.error("Error fetching ranks:", err);
-//       });
-
-//     // โหลดข้อมูล department
-//     axios
-//       .get("/api/departments")
-//       .then((res) => {
-//         setDepartmentOptions(res.data);
-//       })
-//       .catch((err) => {
-//         console.error("Error fetching department_options:", err);
-//       });
-//   }, []);
 
   // handle submit
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -176,6 +146,7 @@ const UserInfoForm: React.FC<UserInfoFormProps> = ({ onSubmit }) => {
         </div>
 
         <div className="mt-6 text-center">
+        {error && <div className="mt-4 text-center text-red-500">{error}</div>}
           <button
             type="submit"
             className="py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
